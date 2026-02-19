@@ -22,6 +22,18 @@
 
 ## 3分钟接入
 
+### 一键安装
+
+- macOS/Linux：
+```bash
+bash scripts/install.sh
+```
+- Windows（PowerShell）：
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
+```
+
+然后：
 - 给 Agent 看：`CLAW.md` / `CLAW.zh-CN.md`
 - 人类命令模板：`EXAMPLES.md` / `EXAMPLES.zh-CN.md`
 

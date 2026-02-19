@@ -17,7 +17,18 @@ A zero-friction, community-ready kit for running Claude Code with OpenClaw using
 
 ## 3-minute onboarding
 
-See:
+### One-command install
+
+- macOS/Linux:
+```bash
+bash scripts/install.sh
+```
+- Windows (PowerShell):
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
+```
+
+Then see:
 - **Agent runbook:** `CLAW.md`
 - **Human quickstart (EN):** `EXAMPLES.md`
 - **中文快速上手：** `README.zh-CN.md` + `CLAW.zh-CN.md` + `EXAMPLES.zh-CN.md`
