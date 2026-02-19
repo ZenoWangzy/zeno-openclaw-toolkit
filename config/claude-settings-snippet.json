@@ -1,0 +1,38 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "tool == \"AskUserQuestion\"",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify-openclaw-event.sh ask_user_question blocked; echo '[Hook] BLOCKED AskUserQuestion for automation' >&2; exit 1"
+          }
+        ],
+        "description": "Block AskUserQuestion in unattended automation and wake OpenClaw"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify-openclaw-dispatch.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify-openclaw-dispatch.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    }
+  }
+}
