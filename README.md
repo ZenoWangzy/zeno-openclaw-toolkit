@@ -1,46 +1,37 @@
-# OpenClaw CC Superpowers Kit
+# Zeno OpenClaw Skill Kit
 
-A reusable **skill + config kit** for OpenClaw bots that dispatch Claude Code tasks with:
+A zero-friction, community-ready kit for running Claude Code with OpenClaw using a reliable, plan-first workflow.
 
-- Superpowers workflow (`brainstorming -> writing-plans -> executing-plans`)
-- Async completion callbacks (Stop/SessionEnd hook)
-- Watchdog alerts (timeout / stall / API error / non-zero exit)
-- AskUserQuestion blocking for unattended automation
+## Who this is for
 
-## What to call this
+- Human operators (English + Chinese)
+- OpenClaw gateway/agents (machine-readable runbook via `CLAW.md`)
+- Teams that want reproducible CC automation with callbacks and watchdog alerts
 
-Use this term:
+## What you get
 
-- **OpenClaw skill kit** (recommended)
+- **Superpowers-aware dispatch skill** (`skill/superpowers-aware-dispatch`)
+- **Async callback flow** (Stop/SessionEnd hooks)
+- **Watchdog alerts** (timeout / stall / API error / non-zero exit)
+- **AskUserQuestion guard** for unattended runs
 
-It includes both a skill and operational scripts/config.
+## 3-minute onboarding
 
-## Contents
+See:
+- **Agent runbook:** `CLAW.md`
+- **Human quickstart (EN):** `EXAMPLES.md`
+- **中文快速上手：** `README.zh-CN.md` + `CLAW.zh-CN.md` + `EXAMPLES.zh-CN.md`
 
-- `skill/superpowers-aware-dispatch/` — Skill definition and prompt template
-- `config/dispatch-claude.sh` — Claude dispatch runner
-- `config/watch-cc-task.sh` — Watchdog monitor
+## Files
 
-## Core methodology
+- `CLAW.md` / `CLAW.zh-CN.md` — for gateway agents
+- `EXAMPLES.md` / `EXAMPLES.zh-CN.md` — three-stage command templates
+- `config/` — operational scripts/snippets
+- `skill/` — reusable OpenClaw skill
 
-1. Run **brainstorming** first (research only)
-2. Review brainstorming result with human
-3. Run **writing-plans**
-4. Review/approve plan
-5. Run **executing-plans**
+## Repository
 
-For unattended mode:
-- do not block on interviews
-- proceed with explicit assumptions (`ASSUMPTION:`)
-- notify on any abnormal state
-
-## Integration notes for OpenClaw
-
-You also need a notifier script in Claude hooks (example path):
-
-- `~/.claude/hooks/notify-openclaw-event.sh`
-
-And a PreToolUse rule blocking `AskUserQuestion` for automation tasks.
+- GitHub: https://github.com/ZenoWangzy/openclaw-cc-superpowers-kit
 
 ## License
 
