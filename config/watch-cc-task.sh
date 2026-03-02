@@ -8,9 +8,11 @@ EXIT_FILE="$4"
 TIMEOUT_MIN="${5:-30}"
 STALL_MIN="${6:-8}"
 NOTIFY_BIN="${HOME}/.claude/hooks/notify-openclaw-event.sh"
+PROGRESS_INTERVAL_SEC="${CC_PROGRESS_INTERVAL_SEC:-300}"
 
 start_ts=$(date +%s)
 last_notify_api_err=0
+last_notify_progress=$start_ts
 
 notify() {
   local evt="$1"
@@ -72,6 +74,21 @@ while true; do
         notify "cc_api_error" "task=${TASK_NAME} detected_in_output=1"
       fi
     fi
+  fi
+
+  # periodic heartbeat status (default every 5 min)
+  if (( PROGRESS_INTERVAL_SEC > 0 )) && (( now - last_notify_progress >= PROGRESS_INTERVAL_SEC )); then
+    last_notify_progress=$now
+    idle_s="na"
+    if [[ -f "$OUTPUT_FILE" ]]; then
+      if stat -f %m "$OUTPUT_FILE" >/dev/null 2>&1; then
+        mtime=$(stat -f %m "$OUTPUT_FILE")
+      else
+        mtime=$(stat -c %Y "$OUTPUT_FILE")
+      fi
+      idle_s=$((now - mtime))
+    fi
+    notify "cc_progress" "task=${TASK_NAME} pid=${PID} elapsed=${elapsed}s idle=${idle_s}s"
   fi
 
   sleep 20

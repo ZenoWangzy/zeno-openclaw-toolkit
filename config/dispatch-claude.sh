@@ -89,7 +89,7 @@ echo "Dispatching Claude task: $TASK_NAME"
 echo "Claude bin: $CLAUDE_BIN"
 echo "Workdir: $WORKDIR"
 
-ohup bash -lc "cd $(printf '%q' "$WORKDIR") && $(printf '%q ' "${CMD[@]}") 2>&1 | tee $(printf '%q' "$TASK_OUTPUT"); ec=\${PIPESTATUS[0]}; echo \$ec > $(printf '%q' "$TASK_EXIT"); exit \$ec" >/dev/null 2>&1 &
+nohup bash -lc "cd $(printf '%q' "$WORKDIR") && $(printf '%q ' "${CMD[@]}") 2>&1 | tee $(printf '%q' "$TASK_OUTPUT"); ec=\${PIPESTATUS[0]}; echo \$ec > $(printf '%q' "$TASK_EXIT"); exit \$ec" >/dev/null 2>&1 &
 PID=$!
 
 # Watchdog for timeout/stall/api-error/non-zero exit notifications

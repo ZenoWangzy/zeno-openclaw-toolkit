@@ -29,6 +29,7 @@ chmod +x config/dispatch-claude.sh config/watch-cc-task.sh skill/superpowers-awa
 - 通过 `ASSUMPTION:` 继续推进，不要无限等待采访。
 - 仅做最小可回滚改动。
 - 任务派发后按异步运行，优先等待 hook 回调（`latest.json`/channel 通知），避免高频轮询。
+- 看门狗默认每 5 分钟发送一次 `cc_progress` 状态，确保用户可见中间进展。
 - 仅在回调异常、看门狗告警或人工要求介入时，才手动查状态。
 
 ## 标准流程
