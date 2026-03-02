@@ -28,6 +28,8 @@ chmod +x config/dispatch-claude.sh config/watch-cc-task.sh skill/superpowers-awa
 - 无人值守任务必须阻断 `AskUserQuestion`。
 - 通过 `ASSUMPTION:` 继续推进，不要无限等待采访。
 - 仅做最小可回滚改动。
+- 任务派发后按异步运行，优先等待 hook 回调（`latest.json`/channel 通知），避免高频轮询。
+- 仅在回调异常、看门狗告警或人工要求介入时，才手动查状态。
 
 ## 标准流程
 

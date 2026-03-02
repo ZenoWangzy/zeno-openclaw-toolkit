@@ -20,6 +20,13 @@
 - 异常告警（超时 / 卡住 / API错误 / 非0退出）
 - 无人值守时阻断 AskUserQuestion
 
+## 派发逻辑（关键）
+
+- CC 任务发出去后按**异步模式**运行。
+- Agent 侧以 **hook 回调优先**（`latest.json` / channel 通知）作为完成与状态信号。
+- **不做高频轮询**；仅在回调异常、超时看门狗触发、或人工要求介入时，才手动排查状态。
+- 这套模式可直接复用在 Windows OpenClaw Gateway（通过 `scripts/install.ps1` + `CLAW.zh-CN.md` 接入）。
+
 ## 3分钟接入
 
 ### 一键安装
