@@ -50,6 +50,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install.ps1
 - `EXAMPLES.md` / `EXAMPLES.zh-CN.md`：三阶段命令模板
 - `config/`：脚本与配置片段
 - `skill/`：可复用 skill
+- `profiles/zeno-main/`：可直接复用到另一台机器（如 Windows Gateway）的规则/人格/运维配置包（已排除长期私密记忆）
+
+## Windows 复制能力（推荐）
+
+1. 在 Windows 机器克隆本仓库
+2. 运行 `scripts/install.ps1`
+3. 将 `profiles/zeno-main/` 中的配置按需拷贝到目标 OpenClaw workspace
+4. 按 `CLAW.zh-CN.md` 完成 hook 与调度脚本接线
 
 仓库地址：
 - https://github.com/ZenoWangzy/openclaw-cc-superpowers-kit
